@@ -1,3 +1,11 @@
-<%= render "form" %>
-
-<%= link_to "Back", locations_path %>
+<h1><%= @location.id ? 'Edit Address' : 'Create Address' %></h1>
+<hr />
+<%= form_with(model: [@trip, @location], local: true, class: "ui form") do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name, required: true %>
+  <br />
+  <%= f.label :days %>
+  <%= f.number_field :days, required: true, placeholder: "Days"%>
+  <br />
+  <%= f.submit nil, class: "ui button" %>
+<% end %>

@@ -2,7 +2,7 @@ class LocationsController < ApplicationController
   before_action :set_trip
   before_action :set_location, only: [:show, :edit, :update, :destroy]
   def index
-    @location = Location.all
+    @locations = @trip.locations
   end
 
   def show
@@ -15,7 +15,7 @@ class LocationsController < ApplicationController
   def create
     @location = @trip.locations.new(the_params)
     if @location.save
-      redirect_to @trip
+      redirect_to trip_path(@trip)
     else 
       render :new
     end
@@ -39,7 +39,7 @@ end
 
   private 
   def the_params
-    params.require(:location).permit(:name)
+    params.require(:location).permit(:name, :days)
   end
   
   def set_trip
@@ -47,6 +47,6 @@ end
   end
 
   def set_location
-    @location = Location.find(params[:id])
+    @location = Location.find(params[:format])
   end
 end
