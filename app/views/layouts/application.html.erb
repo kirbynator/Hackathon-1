@@ -21,6 +21,8 @@
 </p>
 <% @img = [ "a1.gif", "b2.gif", "c3.gif"]%>
   <div class="container" style="background-image: asset-data-url(<%= @img.sample %>)"> 
+  <%= render "layouts/navbar" %>
+  <div class="ui container">
     <%= yield %>
   
   </div>

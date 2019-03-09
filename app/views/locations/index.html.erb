@@ -1,2 +1,14 @@
-<h1>Locations#index</h1>
-<p>Find me in app/views/locations/index.html.erb</p>
+<h1 class="ui center aligned icon header">Trip Addresses</h1>
+<br />
+<%= link_to 'Add New Address', new_location_address_path(@location) %>
+<%= link_to 'Back to Locations', trip_locations_path(trip) %>
+<hr />
+
+<ul>
+  <%addresses.each do |address| %>
+  <%= link_to 'Edit Adress', edit_location_address_path(location, @address) %>
+  <%= link_to 'Delete Adress', address, method: :delete %>
+<% end %>
+
+
+
