@@ -8,7 +8,6 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
-
   <body>
   <p class="navbar-text pull-right">
 <% if user_signed_in? %>
@@ -20,11 +19,10 @@
   <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
 <% end %>
 </p>
-<ul class="nav">
-  <li class="active"><a href="/ideas">Ideas</a></li>
-</ul>
-  <div class="container">
+<% @img = [ "a1.gif", "b2.gif", "c3.gif"]%>
+  <div class="container" style="background-image: asset-data-url(<%= @img.sample %>)"> 
     <%= yield %>
+  
   </div>
   </body>
 </html>
