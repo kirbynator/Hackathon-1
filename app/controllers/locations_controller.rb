@@ -9,7 +9,7 @@ class LocationsController < ApplicationController
   end
 
   def new
-    @list = @trip.lists.new
+    @trip = Trip.new
   end
 
   def create
