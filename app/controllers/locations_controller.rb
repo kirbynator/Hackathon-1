@@ -47,6 +47,6 @@ end
   end
 
   def set_location
-    @location = Location.find(params[:format])
+    @location = Location.find(params[:id])
   end
 end

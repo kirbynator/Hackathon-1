@@ -1,7 +1,6 @@
 class AddressesController < ApplicationController
-  before_action :set_trip
   before_action :set_location
-  before_action :set_address, only: [:show, :edit, :update, :destroy]
+  before_action :set_address, only: [:edit, :update, :destroy]
   def index
     
   end
@@ -10,15 +9,16 @@ class AddressesController < ApplicationController
   end
 
   def new
-    @address = @location.addresses.new
+    @address = Address.new
+    render partial: "form"
   end
 
   def create
-    @address = @location.addresses.new(the_params)
+    @address = @loaction.addresses.new(the_params)
     if @address.save
-    
-      redirect_to user_trip_path(current_user, @location.trip_id)
+    redirect_to trip_locations_path(@location.trip_id, @location)
     else 
+      binding.pry
       render :new
     end
   end
@@ -31,24 +31,19 @@ class AddressesController < ApplicationController
 
   def destroy
     @address.destroy
-    redirect_to user_trip_path(current_user, @location.trip_id)
+    redirect_to trip_locations_path(@location.trip_id, @location)
   end
 
   private 
   def the_params
-    params.require(:address).permit(:name, :top, :done)
-  end
-  
-  def set_trip
-    
-    @trip = trip.find(params[:trip_id])
+    params.require(:address).permit(:street, :state, :city, :zip)
   end
 
   def set_location
-    @location = location.find(params[:location_id])
+    @location = Location.find(params[:location_id])
   end
 
-  def set_addreses
-    @addreses = addreses.find(params[:id])
+  def set_address
+    @address = @location.addresses.find(params[:id])
   end
 end

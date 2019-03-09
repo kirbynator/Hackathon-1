@@ -4,13 +4,13 @@
 <%= link_to "Back", trips_path %>
 
 <h2>Locations</h2>
-<%= link_to "Add Locations", new_trip_locations_path(@trip) %>
+<%= link_to "Add Locations", new_trip_location_path(@trip) %>
 <hr />
 <ul>
     <% @trip.locations.each do |location| %>
     <li>
    
-    <%= link_to location.name, trip_locations_path(@trip, location) %>
+    <%= link_to location.name, trip_location_path(location.trip_id, location) %>
     
     </li>
     <% end %>
