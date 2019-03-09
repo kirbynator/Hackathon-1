@@ -10,11 +10,11 @@ class AddressesController < ApplicationController
   end
 
   def new
-    @address = @location.addresss.new
+    @address = @location.addresses.new
   end
 
   def create
-    @address = @location.addresss.new(the_params)
+    @address = @location.addresses.new(the_params)
     if @address.save
     
       redirect_to user_trip_path(current_user, @location.trip_id)
@@ -48,7 +48,7 @@ class AddressesController < ApplicationController
     @location = location.find(params[:location_id])
   end
 
-  def set_address
-    @address = address.find(params[:id])
+  def set_addreses
+    @addreses = addreses.find(params[:id])
   end
 end
