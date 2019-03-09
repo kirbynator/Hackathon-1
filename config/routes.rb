@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 resources :trips
  end
   resources :trips do
-respource :locations
+resource :locations
  end
  resources :locations do
   resources :address
