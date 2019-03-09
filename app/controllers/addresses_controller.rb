@@ -10,15 +10,19 @@ class AddressesController < ApplicationController
 
   def new
     @address = Address.new
-    render partial: "form"
   end
 
   def create
-    @address = @loaction.addresses.new(the_params)
+    @address = Address.new(
+        street: params[:street],
+        zip: params[:zip],
+        state: params[:state],
+        city: params[:city],
+        location_id: @location.id,
+      )
     if @address.save
-    redirect_to trip_locations_path(@location.trip_id, @location)
+    redirect_to trip_location_path(@location.trip_id, @location)
     else 
-      binding.pry
       render :new
     end
   end
